@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+html,
+body,
+#root {
+  height: auto;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.layout-footer {
+  width: 100%;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+}

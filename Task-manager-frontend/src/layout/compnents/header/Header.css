@@ -1,0 +1,146 @@
+.main-header {
+  background-color: #1e293b;
+  color: white;
+  padding: 12px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-left,
+.header-center,
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Logo */
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
+.title-color {
+  color: #60a5fa;
+}
+
+.header-center {
+  flex: 1;
+  justify-content: center;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 1px 12px;
+  border-radius: 4px;
+  border: none;
+  font-size: 1rem;
+}
+
+.header-right {
+  gap: 20px;
+}
+
+/* Nav links */
+
+.nav-home {
+  font-size: large;
+}
+.nav-link {
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #60a5fa;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #60a5fa;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link.add-task {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-left: 20px;
+  background-color: #60a5fa;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link.add-task:hover {
+  background-color: #3b82f6;
+}
+
+.profile-dropdown {
+  position: relative;
+}
+
+.profile-icon {
+  cursor: pointer;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.profile-icon:hover {
+  background-color: #475569;
+}
+
+.dropdown-menuu {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  min-width: 150px;
+  padding: 12px 20px;
+  font-size: 18px;
+  z-index: 1000;
+}
+
+.dropdown-item {
+  color: black;
+  text-decoration: none;
+  padding: 12px 16px;
+  display: block;
+  text-align: left;
+  font-size: 16px;
+}
+
+.dropdown-item:hover {
+  background-color: #60a5fa;
+  color: white;
+  border-radius: 8px;
+}

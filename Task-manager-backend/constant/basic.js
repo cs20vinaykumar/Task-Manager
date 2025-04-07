@@ -1,0 +1,10 @@
+export const ENVIROMENTS = {
+  LOCAL: "LOCAL",
+  DEVLOPMENT: "DEVELOPMENT",
+};
+
+export const TASK_STATUS = {
+  TODO: "TODO",
+  IN_PROGRESS: "IN_PROGRESS",
+  COMPLETED: "COMPLETED",
+};
