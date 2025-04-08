@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Register.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { registerApi } from "../../../services/apiEndpoints";
 import Swal from "sweetalert2";
 import { create } from "../../../services/services";
@@ -28,7 +28,6 @@ const Register = () => {
     const { fullName, emailAddress, phoneNo, password, confirmPassword } =
       formData;
 
-    // Validation
     if (
       !fullName ||
       !emailAddress ||
@@ -93,7 +92,6 @@ const Register = () => {
             <label htmlFor="fullName">Full Name</label>
             <input
               type="text"
-              className="form-control"
               id="fullName"
               name="fullName"
               placeholder="Enter your full name"
@@ -106,7 +104,6 @@ const Register = () => {
             <label htmlFor="emailAddress">Email Address</label>
             <input
               type="email"
-              className="form-control"
               id="emailAddress"
               name="emailAddress"
               placeholder="Enter your email"
@@ -119,7 +116,6 @@ const Register = () => {
             <label htmlFor="phoneNo">Phone Number</label>
             <input
               type="text"
-              className="form-control"
               id="phoneNo"
               name="phoneNo"
               placeholder="Enter your phone number"
@@ -132,7 +128,6 @@ const Register = () => {
             <label htmlFor="password">Password</label>
             <input
               type="password"
-              className="form-control"
               id="password"
               name="password"
               placeholder="Enter your password"
@@ -145,7 +140,6 @@ const Register = () => {
             <label htmlFor="confirmPassword">Confirm Password</label>
             <input
               type="password"
-              className="form-control"
               id="confirmPassword"
               name="confirmPassword"
               placeholder="Confirm your password"
@@ -162,7 +156,7 @@ const Register = () => {
             Already have an account?{" "}
             <span onClick={() => navigate("/login")} className="link-text">
               Login
-            </span>{" "}
+            </span>
           </p>
         </form>
       </div>

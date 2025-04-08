@@ -5,7 +5,9 @@ import Footer from "./compnents/footer/Footer";
 
 const Layout = () => {
   return (
-    <div>
+    <div
+      style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+    >
       <Header />
       <Body />
       <Footer />

@@ -23,7 +23,6 @@ body {
   animation: fadeIn 0.8s ease-out;
 }
 
-/* Header */
 h4 {
   text-align: center;
   color: #333;
@@ -33,7 +32,6 @@ h4 {
   text-transform: uppercase;
 }
 
-/* Form Group */
 .form-group {
   margin-bottom: 20px;
 }
@@ -43,7 +41,6 @@ label {
   color: #333;
 }
 
-/* Input Fields */
 input[type="text"],
 input[type="email"],
 input[type="password"] {
@@ -63,7 +60,6 @@ input[type="password"]:focus {
   border-color: #6a11cb;
 }
 
-/* Submit Button */
 .btn-block {
   background-color: #6a11cb;
   color: white;
@@ -97,7 +93,6 @@ input[type="password"]:focus {
   color: #2575fc;
 }
 
-/* Add animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -109,7 +104,6 @@ input[type="password"]:focus {
   }
 }
 
-/* Responsive Design */
 @media (max-width: 480px) {
   .register-form-container {
     padding: 20px;

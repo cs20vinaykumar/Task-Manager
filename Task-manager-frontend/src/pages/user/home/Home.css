@@ -1,0 +1,121 @@
+.task-list {
+  width: 80%;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+.task-list h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.filter-buttons button {
+  padding: 10px 20px;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.filter-buttons button:hover {
+  background-color: #e0e0e0;
+}
+
+.filter-buttons button:active {
+  background-color: #d4d4d4;
+}
+
+.tasks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.task-item {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.task-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.task-item h3 {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.task-item p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.task-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.icon-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.update-btn {
+  color: #4caf50;
+}
+
+.update-btn:hover {
+  background-color: rgba(76, 175, 80, 0.1);
+  transform: scale(1.1);
+}
+
+.delete-btn {
+  color: #f44336;
+}
+
+.delete-btn:hover {
+  background-color: rgba(244, 67, 54, 0.1);
+  transform: scale(1.1);
+}
+
+.task-list .no-tasks {
+  font-size: 1.2rem;
+  color: #888;
+}
+@media (max-width: 600px) {
+  .filter-buttons {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(120px, 1fr)
+    ); /* Buttons will take at least 120px, and distribute evenly */
+    gap: 15px; /* Reduce gap between buttons on smaller screens */
+  }
+
+  .filter-buttons button {
+    font-size: 14px; /* Make font smaller on smaller screens */
+    padding: 8px 16px; /* Reduce padding on smaller screens */
+  }
+}

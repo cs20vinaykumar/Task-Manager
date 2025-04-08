@@ -4,7 +4,6 @@ import Login from "../pages/common/login/Login";
 import Register from "../pages/common/register/Register";
 import Layout from "../layout/Layout";
 import LandingPage from "../pages/common/landingPage/landingPage";
-
 import Home from "../pages/user/home/Home";
 import AddTask from "../pages/user/addTask/AddTask";
 

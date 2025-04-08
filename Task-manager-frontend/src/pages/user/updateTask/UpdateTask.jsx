@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaTimes } from "react-icons/fa";
 import { closeModal } from "../../../redux/modalSlice";
 import Swal from "sweetalert2";
-import { create } from "../../../services/services";
-import { createTaskApi } from "../../../services/apiEndpoints";
-import "./AddTask.css";
+import { update } from "../../../services/services";
+import "../addTask/AddTask.css";
+import { updateTaskApi } from "../../../services/apiEndpoints";
 
-const AddTask = () => {
+const UpdateTask = () => {
   const dispatch = useDispatch();
-  const { isModalOpen, modalType } = useSelector((state) => state.modal);
-
-  if (!isModalOpen || modalType !== "ADD_TASK") return null;
+  const { isModalOpen, modalType, selectedTask } = useSelector(
+    (state) => state.modal
+  );
+  if (!isModalOpen || modalType !== "UPDATE_TASK") return null;
 
   const [taskDetails, setTaskDetails] = useState({
     title: "",
@@ -19,6 +20,17 @@ const AddTask = () => {
     status: "TODO",
     dueDate: "",
   });
+
+  useEffect(() => {
+    if (selectedTask) {
+      setTaskDetails({
+        title: selectedTask.title || "",
+        description: selectedTask.description || "",
+        status: selectedTask.status || "TODO",
+        dueDate: selectedTask.dueDate?.split("T")[0] || "",
+      });
+    }
+  }, [selectedTask]);
 
   const handleInputChange = (e) => {
     setTaskDetails({
@@ -42,30 +54,26 @@ const AddTask = () => {
     }
 
     try {
-      const response = await create(createTaskApi, taskDetails);
+      const response = await update(
+        `${updateTaskApi}/${selectedTask._id}`,
+        taskDetails
+      );
 
       if (response && response.data && response.data.success) {
         Swal.fire({
-          title: "Success",
-          text: response.data.message || "Task has been added successfully!",
+          title: "Updated",
+          text: response.data.message || "Task updated successfully!",
           icon: "success",
-          showConfirmButton: true,
         });
+
         dispatch(closeModal());
-        setTaskDetails({
-          title: "",
-          description: "",
-          status: "TODO",
-          dueDate: "",
-        });
       }
     } catch (error) {
-      console.error("Error creating task:", error);
+      console.error("Error updating task:", error);
       Swal.fire({
         title: "Error",
-        text: error.message || "Something went wrong, please try again.",
+        text: error.message || "Failed to update task. Try again.",
         icon: "error",
-        showConfirmButton: true,
       });
     } finally {
       dispatch(closeModal());
@@ -78,12 +86,8 @@ const AddTask = () => {
         <div className="modal-overlay" onClick={() => dispatch(closeModal())}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
-              <h5 className="modal-title">Add Task</h5>
-              <button
-                type="button"
-                className="close"
-                onClick={() => dispatch(closeModal())}
-              >
+              <h5 className="modal-title">Update Task</h5>
+              <button className="close" onClick={() => dispatch(closeModal())}>
                 <FaTimes size={20} />
               </button>
             </div>
@@ -98,7 +102,6 @@ const AddTask = () => {
                     value={taskDetails.title}
                     onChange={handleInputChange}
                     className="form-control"
-                    placeholder="Task Title"
                     required
                   />
                 </div>
@@ -110,8 +113,7 @@ const AddTask = () => {
                     value={taskDetails.description}
                     onChange={handleInputChange}
                     className="form-control"
-                    placeholder="Task Description"
-                  ></textarea>
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="status">Status</label>
@@ -123,7 +125,7 @@ const AddTask = () => {
                     className="form-control"
                     required
                   >
-                    <option value="TODO">To DO</option>
+                    <option value="TODO">To Do</option>
                     <option value="IN_PROGRESS">In Progress</option>
                     <option value="COMPLETED">Completed</option>
                   </select>
@@ -146,10 +148,10 @@ const AddTask = () => {
                     className="btn btn-secondary"
                     onClick={() => dispatch(closeModal())}
                   >
-                    Close
+                    Cancel
                   </button>
                   <button type="submit" className="btn btn-primary">
-                    Create Task
+                    Update Task
                   </button>
                 </div>
               </form>
@@ -161,4 +163,4 @@ const AddTask = () => {
   );
 };
 
-export default AddTask;
+export default UpdateTask;

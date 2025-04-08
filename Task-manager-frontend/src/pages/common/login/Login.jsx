@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { create } from "../../../services/services";
 import { loginApi } from "../../../services/apiEndpoints";
 import Swal from "sweetalert2";
-import "./Login.css";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "../../../redux/authSlice";
 import { jwtDecode } from "jwt-decode";
+import "./Login.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -36,11 +36,10 @@ const Login = () => {
           })
         );
         localStorage.setItem("authToken", response.data.authToken);
+        localStorage.setItem("user", JSON.stringify(decodedUser));
         navigate("/");
       }
     } catch (error) {
-      console.error("Login Error:", error);
-
       Swal.fire({
         title: "Login Failed",
         text: error.message || "Invalid credentials, please try again.",
@@ -71,9 +70,7 @@ const Login = () => {
         <button className="login-button" onClick={loginUser}>
           Login
         </button>
-
         <p className="signup-text">
-          {" "}
           Don't have an account?{" "}
           <button className="signup-btn" onClick={() => navigate("/register")}>
             Sign Up

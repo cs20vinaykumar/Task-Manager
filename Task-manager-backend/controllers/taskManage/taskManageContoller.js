@@ -183,3 +183,48 @@ export const deleteTaskById = async (req, res) => {
       .json(ServerErrorResponse.internal(error));
   }
 };
+
+// In your taskManageContoller.js
+export const searchTasks = async (req, res) => {
+  const { title, status } = req.query;
+
+  const currentUser = req.user;
+
+  try {
+    // Build the query object dynamically based on available query parameters
+    let query = { user: currentUser._id };
+
+    if (title) {
+      query.title = { $regex: title, $options: "i" };
+    }
+
+    if (status) {
+      query.status = status;
+    }
+
+    // Find tasks based on the constructed query
+    const tasks = await Task.find(query);
+
+    if (!tasks || tasks.length === 0) {
+      return res
+        .status(STATUS_CODE.NOT_FOUND)
+        .json(ServerErrorResponse.notFound(ERROR_MESSAGES.TASK_NOT_FOUND));
+    }
+
+    return res
+      .status(STATUS_CODE.OK)
+      .json(
+        ServerSuccessResponse.successResponse(
+          true,
+          STATUS_CODE.OK,
+          STATUS_MESSAGES.SUCCESS,
+          SUCCESS_MESSAGES.RETREVIED,
+          tasks
+        )
+      );
+  } catch (error) {
+    return res
+      .status(STATUS_CODE.SERVER_ERROR)
+      .json(ServerErrorResponse.internal(error));
+  }
+};

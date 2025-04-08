@@ -1,10 +1,9 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const authToken = localStorage.getItem("authToken") || null;
-
 export const create = async (url, postData) => {
   console.log("Request URL:", url);
+  const authToken = localStorage.getItem("authToken") || null;
 
   // Check Internet Connection
   if (!navigator.onLine) {
@@ -78,6 +77,7 @@ export const create = async (url, postData) => {
 };
 
 export const getAll = async (url) => {
+  const authToken = localStorage.getItem("authToken") || null;
   if (!navigator.onLine) {
     Swal.fire({
       title: "No Internet",
@@ -94,21 +94,19 @@ export const getAll = async (url) => {
   }
 
   try {
-    const response = await axios.get(url);
-
+    const response = await axios.get(url, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authToken}`,
+      },
+    });
+    console.log("API Response:", response.data);
     return response.data;
   } catch (error) {
     console.error("Error:", error);
 
     const errorMessage =
       error.response?.data?.message || "Something went wrong!";
-
-    Swal.fire({
-      title: "Error",
-      text: errorMessage,
-      icon: "error",
-      showConfirmButton: true,
-    });
 
     return {
       success: false,
@@ -119,6 +117,7 @@ export const getAll = async (url) => {
 };
 
 export const update = async (url, updateData) => {
+  const authToken = localStorage.getItem("authToken") || null;
   if (!navigator.onLine) {
     Swal.fire({
       title: "No Internet",
@@ -139,6 +138,7 @@ export const update = async (url, updateData) => {
     const response = await axios.put(url, updateData, {
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${authToken}`,
       },
     });
 
@@ -187,6 +187,7 @@ export const update = async (url, updateData) => {
 };
 
 export const remove = async (url) => {
+  const authToken = localStorage.getItem("authToken") || null;
   if (!navigator.onLine) {
     Swal.fire({
       title: "No Internet",
@@ -207,6 +208,7 @@ export const remove = async (url) => {
     const response = await axios.delete(url, {
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${authToken}`,
       },
     });
 
