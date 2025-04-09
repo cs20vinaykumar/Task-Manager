@@ -14,6 +14,6 @@ router.post("/create", authenticateUser, createTask);
 router.get("/get-all", authenticateUser, getAllTasks);
 router.put("/update/:taskId", authenticateUser, updateTaskById);
 router.delete("/delete/:taskId", authenticateUser, deleteTaskById);
-router.get("/search", authenticateUser, searchTasks);
+
 
 export default router;
